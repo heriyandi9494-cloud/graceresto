@@ -36,7 +36,46 @@
     border-radius: 50%;
     object-fit: cover; /* menjaga proporsi gambar tetap pas di dalam lingkaran */
 }
+/* Modal */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 100; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(22, 10, 242, 0.5); 
+}
 
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto; 
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%; 
+  max-width: 600px;
+  box-shadow: 0 0 15px rgba(1, 21, 200, 0.2);
+}
+
+.modal-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.modal-content th, .modal-content td {
+  padding: 10px;
+  border: 1px solid #400dfa;
+  text-align: center;
+}
+
+.close {
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
 </style>
 </head>
@@ -72,6 +111,26 @@
 </table>
 
 <h3>𝐓𝐨𝐭𝐚𝐥 𝐏𝐞𝐧𝐝𝐚𝐩𝐚𝐭𝐚𝐧: 𝐑𝐩 <span id="totalPendapatan">0</span></h3>
+<button id="sisaJualanBtn">SISA JUALANNYA</button>
+
+<!-- Modal -->
+<div id="sisaJualanModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>Sisa Jualan</h3>
+    <table id="modalTable">
+      <thead>
+        <tr>
+          <th>Nama Barang</th>
+          <th>Stok Awal</th>
+          <th>Stok Sisa</th>
+          <th>Terjual</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
 
 <!-- Grafik -->
 <canvas id="grafikPenjualan"></canvas>
@@ -292,6 +351,40 @@ pembeliRef.on("value", snapshot => {
     snapshot.forEach(item => { pembeliData.push(item.val()); });
     updateTabelPembeli();
 });
+const sisaBtn = document.getElementById("sisaJualanBtn");
+const modal = document.getElementById("sisaJualanModal");
+const closeModal = modal.querySelector(".close");
+const modalTableBody = modal.querySelector("tbody");
+
+// Tombol klik untuk buka modal
+sisaBtn.onclick = () => {
+  modal.style.display = "block";
+
+  // Kosongkan dulu table
+  modalTableBody.innerHTML = "";
+
+  // Isi table dengan data dari Firebase
+  dbSnapshot.forEach(item => {
+    let d = item.val();
+    modalTableBody.innerHTML += `<tr>
+      <td>${d.nama}</td>
+      <td>${d.stokAwal}</td>
+      <td>${d.stokSisa}</td>
+      <td>${d.terjual}</td>
+    </tr>`;
+  });
+};
+
+// Close modal
+closeModal.onclick = () => modal.style.display = "none";
+
+// Klik di luar modal untuk close
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
 </script>
 
 </body>
