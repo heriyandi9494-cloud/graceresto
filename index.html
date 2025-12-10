@@ -11,7 +11,7 @@
 <style>
     body { font-family: Arial, sans-serif; background: #f3f1f1; padding: 20px; color: #3508e9; }
     h2, h3 { text-align: center; }
-    .input-area, .reset-area { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+    .input-area { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
     input, button, select { padding: 10px; border-radius: 8px; border: 1px solid #1004f5; transition: 0.3s; outline: none; }
     input:hover, button:hover, select:hover { box-shadow: 0 0 10px #4ad9ff; }
     button { cursor: pointer; background: #4a88ff; color: white; border: none; }
@@ -23,69 +23,94 @@
     canvas { margin-top: 30px; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 0 12px rgba(0,0,0,0.1); }
     @media(max-width:600px){ table, thead, tbody, th, td, tr { font-size: 12px; } }
     .header-container {
-    display: flex;
-    align-items: center;
-    justify-content: center; /* agar header tetap di tengah */
-    gap: 10px; /* jarak antara logo dan teks */
-    margin-bottom: 20px;
-}
+        display: flex;
+        align-items: center;
+        justify-content: center; /* agar header tetap di tengah */
+        gap: 10px; /* jarak antara logo dan teks */
+        margin-bottom: 20px;
+    }
+    .header-container img.logo {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
 
-.header-container img.logo {
-    width: 50px;
-    height: 50px; /* pastikan tinggi sama dengan lebar agar bulat sempurna */
-    border-radius: 50%;
-    object-fit: cover; /* menjaga proporsi gambar tetap pas di dalam lingkaran */
-}
-/* Modal */
-.modal {
-  display: none; 
-  position: fixed; 
-  z-index: 100; 
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgba(22, 10, 242, 0.5); 
-}
+    /* Tombol kiri atas */
+    .top-left-buttons {
+        display: flex;
+        gap: 10px;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
+    .top-left-buttons button {
+        padding: 10px 15px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        color: white;
+        background: #4a88ff;
+        transition: 0.3s;
+    }
+    .top-left-buttons button.resetBtn {
+        background: #ff4a4a;
+    }
+    .top-left-buttons button:hover {
+        box-shadow: 0 0 10px #4ad9ff;
+    }
 
-.modal-content {
-  background-color: #fff;
-  margin: 10% auto; 
-  padding: 20px;
-  border-radius: 10px;
-  width: 80%; 
-  max-width: 600px;
-  box-shadow: 0 0 15px rgba(1, 21, 200, 0.2);
-}
-
-.modal-content table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.modal-content th, .modal-content td {
-  padding: 10px;
-  border: 1px solid #400dfa;
-  text-align: center;
-}
-
-.close {
-  float: right;
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
+    /* Modal */
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 100; 
+      left: 0;
+      top: 0;
+      width: 100%; 
+      height: 100%; 
+      overflow: auto; 
+      background-color: rgba(22, 10, 242, 0.5); 
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto; 
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%; 
+      max-width: 600px;
+      box-shadow: 0 0 15px rgba(1, 21, 200, 0.2);
+    }
+    .modal-content table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .modal-content th, .modal-content td {
+      padding: 10px;
+      border: 1px solid #400dfa;
+      text-align: center;
+    }
+    .close {
+      float: right;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 </style>
 </head>
 <body>
+
+<!-- Tombol kiri atas -->
+<div class="top-left-buttons">
+    <button class="resetBtn" onclick="resetAll()">𝐑𝐞𝐬𝐞𝐭 𝐒𝐞𝐦𝐮𝐚</button>
+    <button id="sisaJualanBtn">𝐒𝐈𝐒𝐀 𝐉𝐔𝐀𝐋𝐀𝐍𝐍𝐘𝐀</button>
+</div>
 
 <div class="header-container">
     <img src="https://i.postimg.cc/0QKW4nSD/Screenshot-3.jpg" alt="Logo" class="logo">
     <h2>𝐃𝐀𝐅𝐓𝐀𝐑 𝐂𝐄𝐌𝐈𝐋𝐀𝐍 𝐆𝐑𝐀𝐂𝐄 𝐑𝐄𝐒𝐓𝐎</h2>
 </div>
-
 
 <!-- Input Data Barang -->
 <div class="input-area">
@@ -111,7 +136,6 @@
 </table>
 
 <h3>𝐓𝐨𝐭𝐚𝐥 𝐏𝐞𝐧𝐝𝐚𝐩𝐚𝐭𝐚𝐧: 𝐑𝐩 <span id="totalPendapatan">0</span></h3>
-<button id="sisaJualanBtn">SISA JUALANNYA</button>
 
 <!-- Modal -->
 <div id="sisaJualanModal" class="modal">
@@ -156,11 +180,6 @@
     <tbody id="dataPembeliBody"></tbody>
 </table>
 
-<!-- Reset -->
-<div class="reset-area">
-    <button class="resetBtn" onclick="resetAll()">𝐑𝐞𝐬𝐞𝐭 𝐒𝐞𝐦𝐮𝐚</button>
-</div>
-
 <!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
@@ -179,7 +198,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database().ref("penjualan");
 const pembeliRef = firebase.database().ref("pembeli");
-// ===========================================================
 
 // ==================== TAMBAH BARANG ========================
 function tambahBarang() {
@@ -193,7 +211,6 @@ function tambahBarang() {
     document.getElementById("stokAwal").value = "";
     document.getElementById("harga").value = "";
 }
-// ===========================================================
 
 // ==================== LOAD TABEL & GRAFIK ==================
 let chart;
@@ -215,7 +232,6 @@ function updatePilihanBarang(snapshot) {
         select.innerHTML += `<option value="${d.id}" data-nama="${d.nama}" data-terjual="${d.terjual}">${d.nama}</option>`;
     });
 }
-// ===========================================================
 
 // =================== TABEL PEMBELI DINAMIS =================
 let barangList = [];
@@ -223,13 +239,11 @@ let pembeliData = [];
 let dbSnapshot;
 
 function updateTabelPembeli() {
-    // Update header
     const header = document.getElementById("headerPembeli");
     let ths = '<th>Nama Pembeli</th>';
     barangList.forEach(b => ths += `<th>${b.nama}</th>`);
     header.innerHTML = `<tr>${ths}</tr>`;
 
-    // Update body
     const tbody = document.getElementById("dataPembeliBody");
     tbody.innerHTML = '';
     pembeliData.forEach(p => {
@@ -239,7 +253,6 @@ function updateTabelPembeli() {
         tbody.innerHTML += row;
     });
 }
-// ===========================================================
 
 // =================== UPDATE TERJUAL ========================
 function updateTerjual(id, jumlah) {
@@ -251,7 +264,6 @@ function updateTerjual(id, jumlah) {
         db.child(id).update({ terjual: jumlah, stokSisa, total: jumlah * d.harga });
     });
 }
-// ===========================================================
 
 // =================== TAMBAH PEMBELI ========================
 function tambahPembeli() {
@@ -266,14 +278,12 @@ function tambahPembeli() {
         let stokSisa = d.stokSisa - jumlahBeli;
         if (stokSisa < 0) return alert("Stok tidak cukup!");
 
-        // Update penjualan
         db.child(barangId).update({
             terjual: d.terjual + jumlahBeli,
             stokSisa,
             total: (d.terjual + jumlahBeli) * d.harga
         });
 
-        // Simpan pembeli ke Firebase
         pembeliRef.orderByChild("nama").equalTo(namaPembeli).once("value", snapshot => {
             if (snapshot.exists()) {
                 snapshot.forEach(childSnap => {
@@ -289,13 +299,11 @@ function tambahPembeli() {
             }
         });
 
-        // Reset input
         document.getElementById("namaPembeli").value = "";
         document.getElementById("jumlahBeli").value = "";
         select.value = "";
     });
 }
-// ===========================================================
 
 // ====================== RESET ===============================
 function resetAll() {
@@ -306,13 +314,11 @@ function resetAll() {
         updateTabelPembeli();
     }
 }
-// ===========================================================
 
 // ====================== LISTENER ===========================
 db.on("value", snapshot => {
     dbSnapshot = snapshot;
 
-    // Update tabel penjualan & grafik
     let body = "";
     let totalPendapatan = 0;
     let labels = [];
@@ -338,32 +344,26 @@ db.on("value", snapshot => {
     document.getElementById("totalPendapatan").innerText = totalPendapatan;
     loadGrafik(labels, jumlahJual);
 
-    // Update daftar barang untuk pembeli
     barangList = [];
     snapshot.forEach(item => { let d = item.val(); barangList.push({ id: d.id, nama: d.nama }); });
     updatePilihanBarang(snapshot);
     updateTabelPembeli();
 });
 
-// Load data pembeli dari Firebase
 pembeliRef.on("value", snapshot => {
     pembeliData = [];
     snapshot.forEach(item => { pembeliData.push(item.val()); });
     updateTabelPembeli();
 });
+
 const sisaBtn = document.getElementById("sisaJualanBtn");
 const modal = document.getElementById("sisaJualanModal");
 const closeModal = modal.querySelector(".close");
 const modalTableBody = modal.querySelector("tbody");
 
-// Tombol klik untuk buka modal
 sisaBtn.onclick = () => {
   modal.style.display = "block";
-
-  // Kosongkan dulu table
   modalTableBody.innerHTML = "";
-
-  // Isi table dengan data dari Firebase
   dbSnapshot.forEach(item => {
     let d = item.val();
     modalTableBody.innerHTML += `<tr>
@@ -375,16 +375,12 @@ sisaBtn.onclick = () => {
   });
 };
 
-// Close modal
 closeModal.onclick = () => modal.style.display = "none";
-
-// Klik di luar modal untuk close
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 };
-
 </script>
 
 </body>
