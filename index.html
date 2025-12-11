@@ -205,7 +205,7 @@ function updateTabelPembeli() {
     const header = document.getElementById("headerPembeli");
     let ths = '<th>𝐍𝐀𝐌𝐀 𝐏𝐄𝐌𝐁𝐄𝐋𝐈</th>';
     barangList.forEach(b => ths += `<th>${b.nama}</th>`);
-    ths += '<th>Lunas</th>';
+    ths += '<th>KETERANGAN</th>';
     header.innerHTML = `<tr>${ths}</tr>`;
 
     const tbody = document.getElementById("dataPembeliBody");
@@ -217,10 +217,11 @@ function updateTabelPembeli() {
             row += `<td>${p.beli[b.id] || 0}</td>`; 
         });
         let isLunas = p.lunas || false;
-        row += `<td>
-                    <input type="checkbox" ${isLunas ? 'checked' : ''} onchange="toggleLunas(${index}, this)">
-                    <button onclick="hapusPembeli('${p.nama}')">Hapus</button>
-                </td>`;
+row += `<td>
+            <input type="checkbox" ${isLunas ? 'checked' : ''} onchange="toggleLunas(${index}, this)">
+            <span id="aksi-${index}">${isLunas ? 'Lunas' : ''}</span>
+        </td>`;
+
         tbody.innerHTML += row;
     });
 }
@@ -321,7 +322,12 @@ db.on("value", snapshot => {
 
 pembeliRef.on("value", snapshot => {
     pembeliData = [];
-    snapshot.forEach(item => { pembeliData.push(item.val()); });
+    snapshot.forEach(item => {
+    let d = item.val();
+    d.lunas = d.lunas || false; // default false
+    pembeliData.push(d);
+});
+
     updateTabelPembeli();
 });
 
@@ -378,8 +384,20 @@ closeRangkuman.onclick = () => rangkumanModal.style.display = "none";
 function toggleLunas(index, checkbox) {
     let pembeli = pembeliData[index];
     let row = document.getElementById(`row-${index}`);
+    let aksiCell = document.getElementById(`aksi-${index}`);
+
+    // Ubah warna row
     row.style.background = checkbox.checked ? 'lightgreen' : '#ffb3b3';
-    pembeli.lunas = checkbox.checked;
+
+    // Update teks Lunas
+    aksiCell.innerText = checkbox.checked ? 'Lunas' : '';
+
+    // Update ke Firebase
+    pembeliRef.orderByChild("nama").equalTo(pembeli.nama).once("value", snapshot => {
+        snapshot.forEach(item => {
+            item.ref.update({ lunas: checkbox.checked });
+        });
+    });
 }
 
 function hapusBarang(id) {
