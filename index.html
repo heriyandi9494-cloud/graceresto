@@ -9,10 +9,10 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-    body { font-family: Arial, sans-serif; background: #f3f1f1; padding: 20px; color: #3508e9; }
+    body { font-family: Arial, sans-serif; background: #f3f1f1; padding: 20px; color: #020008; }
     h2, h3 { text-align: center; }
     .input-area { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
-    input, button, select { padding: 10px; border-radius: 8px; border: 1px solid #1004f5; transition: 0.3s; outline: none; }
+    input, button, select { padding: 10px; border-radius: 8px; border: 1px solid #01000d; transition: 0.3s; outline: none; }
     input:hover, button:hover, select:hover { box-shadow: 0 0 10px #4ad9ff; }
     button { cursor: pointer; background: #4a88ff; color: white; border: none; }
     .resetBtn { background: #ff4a4a; }
@@ -22,91 +22,33 @@
     .stok-habis { color: red; font-weight: bold; }
     canvas { margin-top: 30px; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 0 12px rgba(0,0,0,0.1); }
     @media(max-width:600px){ table, thead, tbody, th, td, tr { font-size: 12px; } }
-    .header-container {
-        display: flex;
-        align-items: center;
-        justify-content: center; /* agar header tetap di tengah */
-        gap: 10px; /* jarak antara logo dan teks */
-        margin-bottom: 20px;
-    }
-    .header-container img.logo {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
+    .header-container { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px; }
+    .header-container img.logo { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
 
     /* Tombol kiri atas */
-    .top-left-buttons {
-        display: flex;
-        gap: 10px;
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        z-index: 1000;
-    }
-    .top-left-buttons button {
-        padding: 10px 15px;
-        border-radius: 8px;
-        border: none;
-        cursor: pointer;
-        color: white;
-        background: #4a88ff;
-        transition: 0.3s;
-    }
-    .top-left-buttons button.resetBtn {
-        background: #ff4a4a;
-    }
-    .top-left-buttons button:hover {
-        box-shadow: 0 0 10px #4ad9ff;
-    }
+    .top-left-buttons { display: flex; gap: 10px; position: absolute; top: 20px; left: 20px; z-index: 1000; }
+    .top-left-buttons button { padding: 10px 15px; border-radius: 8px; border: none; cursor: pointer; color: white; background: #4a88ff; transition: 0.3s; }
+    .top-left-buttons button.resetBtn { background: #ff4a4a; }
+    .top-left-buttons button:hover { box-shadow: 0 0 10px #4ad9ff; }
 
     /* Modal */
-    .modal {
-      display: none; 
-      position: fixed; 
-      z-index: 100; 
-      left: 0;
-      top: 0;
-      width: 100%; 
-      height: 100%; 
-      overflow: auto; 
-      background-color: rgba(22, 10, 242, 0.5); 
-    }
-    .modal-content {
-      background-color: #fff;
-      margin: 10% auto; 
-      padding: 20px;
-      border-radius: 10px;
-      width: 80%; 
-      max-width: 600px;
-      box-shadow: 0 0 15px rgba(1, 21, 200, 0.2);
-    }
-    .modal-content table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .modal-content th, .modal-content td {
-      padding: 10px;
-      border: 1px solid #400dfa;
-      text-align: center;
-    }
-    .close {
-      float: right;
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+    .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(22, 10, 242, 0.5); }
+    .modal-content { background-color: #fff; margin: 10% auto; padding: 20px; border-radius: 10px; width: 80%; max-width: 600px; box-shadow: 0 0 15px rgba(1, 21, 200, 0.2); }
+    .modal-content table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+    .modal-content th, .modal-content td { padding: 10px; border: 1px solid #400dfa; text-align: center; }
+    .close { float: right; font-size: 24px; font-weight: bold; cursor: pointer; }
 </style>
 </head>
 <body>
 
 <!-- Tombol kiri atas -->
 <div class="top-left-buttons">
-    <button class="resetBtn" onclick="resetAll()">𝐑𝐞𝐬𝐞𝐭 𝐒𝐞𝐦𝐮𝐚</button>
-    <button id="sisaJualanBtn">𝐒𝐈𝐒𝐀 𝐉𝐔𝐀𝐋𝐀𝐍𝐍𝐘𝐀</button>
+    <button class="resetBtn" onclick="resetAll()">𝐑𝐄𝐒𝐄𝐓 𝐒𝐄𝐌𝐔𝐀</button>
+    <button id="sisaJualanBtn">𝐒𝐈𝐒𝐀 𝐉𝐔𝐀𝐋𝐀𝐍</button>
+    <button id="rangkumanBtn">𝐑𝐀𝐍𝐆𝐊𝐔𝐌𝐀𝐍 𝐏𝐄𝐍𝐉𝐔𝐀𝐋𝐀𝐍</button>
 </div>
 
+<!-- Header -->
 <div class="header-container">
     <img src="https://i.postimg.cc/0QKW4nSD/Screenshot-3.jpg" alt="Logo" class="logo">
     <h2>𝐃𝐀𝐅𝐓𝐀𝐑 𝐂𝐄𝐌𝐈𝐋𝐀𝐍 𝐆𝐑𝐀𝐂𝐄 𝐑𝐄𝐒𝐓𝐎</h2>
@@ -117,7 +59,7 @@
     <input type="text" id="namaBarang" placeholder="Nama Barang">
     <input type="number" id="stokAwal" placeholder="Stok Awal">
     <input type="number" id="harga" placeholder="Harga">
-    <button onclick="tambahBarang()">𝐓𝐚𝐦𝐛𝐚𝐡 𝐁𝐚𝐫𝐚𝐧𝐠</button>
+    <button onclick="tambahBarang()">𝐓𝐀𝐌𝐁𝐀𝐇 𝐁𝐀𝐑𝐀𝐍𝐆</button>
 </div>
 
 <!-- Tabel Penjualan -->
@@ -130,6 +72,7 @@
             <th>𝐓𝐞𝐫𝐣𝐮𝐚𝐥</th>
             <th>𝐇𝐚𝐫𝐠𝐚</th>
             <th>𝐓𝐨𝐭𝐚𝐥</th>
+            <th>𝐀𝐤𝐬𝐢</th>
         </tr>
     </thead>
     <tbody id="dataBody"></tbody>
@@ -137,18 +80,18 @@
 
 <h3>𝐓𝐨𝐭𝐚𝐥 𝐏𝐞𝐧𝐝𝐚𝐩𝐚𝐭𝐚𝐧: 𝐑𝐩 <span id="totalPendapatan">0</span></h3>
 
-<!-- Modal -->
+<!-- Modal Sisa Jualan -->
 <div id="sisaJualanModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
-    <h3>Sisa Jualan</h3>
+    <h3>𝐒𝐢𝐬𝐚 𝐉𝐮𝐚𝐥𝐚𝐧</h3>
     <table id="modalTable">
       <thead>
         <tr>
-          <th>Nama Barang</th>
-          <th>Stok Awal</th>
-          <th>Stok Sisa</th>
-          <th>Terjual</th>
+          <th>𝐍𝐚𝐦𝐚 𝐁𝐚𝐫𝐚𝐧𝐠</th>
+          <th>𝐒𝐭𝐨𝐤 𝐀𝐰𝐚𝐥</th>
+          <th>𝐒𝐭𝐨𝐤 𝐒𝐢𝐬𝐚</th>
+          <th>𝐓𝐞𝐫𝐣𝐮𝐚𝐥</th>
         </tr>
       </thead>
       <tbody></tbody>
@@ -156,18 +99,36 @@
   </div>
 </div>
 
+<!-- Modal Rangkuman Penjualan -->
+<div id="rangkumanModal" class="modal">
+  <div class="modal-content">
+    <span class="close-rangkuman">&times;</span>
+    <h3 style="text-align:center;">𝐆𝐑𝐀𝐂𝐄 𝐑𝐄𝐒𝐓𝐎 𝐑𝐄𝐀𝐃𝐘 𝐂𝐄𝐌𝐈𝐋𝐀𝐍</h3>
+    <table id="rangkumanTable">
+      <thead>
+        <tr>
+          <th>𝐍𝐚𝐦𝐚 𝐁𝐚𝐫𝐚𝐧𝐠</th>
+          <th>𝐇𝐚𝐫𝐠𝐚</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <p style="text-align:center; font-weight:bold;">𝐘𝐀𝐍𝐆 𝐌𝐀𝐔 𝐋𝐀𝐍𝐆𝐒𝐔𝐍𝐆 𝐂𝐇𝐀𝐓 𝐘𝐀</p>
+  </div>
+</div>
+
 <!-- Grafik -->
 <canvas id="grafikPenjualan"></canvas>
 
 <!-- Input Data Pembeli -->
-<h3>𝐃𝐚𝐭𝐚 𝐏𝐞𝐦𝐛𝐞𝐥𝐢</h3>
+<h3>𝐃𝐀𝐓𝐀 𝐏𝐄𝐌𝐁𝐄𝐋𝐈</h3>
 <div class="input-area">
-    <input type="text" id="namaPembeli" placeholder="Nama Pembeli">
+    <input type="text" id="namaPembeli" placeholder="𝐍𝐀𝐌𝐀 𝐏𝐄𝐌𝐁𝐄𝐋𝐈">
     <select id="pilihBarang">
         <option value="">-- 𝐏𝐢𝐥𝐢𝐡 𝐁𝐚𝐫𝐚𝐧𝐠 --</option>
     </select>
     <input type="number" id="jumlahBeli" placeholder="Jumlah Beli">
-    <button onclick="tambahPembeli()">𝐓𝐚𝐦𝐛𝐚𝐡 𝐏𝐞𝐦𝐛𝐞𝐥𝐢</button>
+    <button onclick="tambahPembeli()">𝐓𝐀𝐌𝐁𝐀𝐇 𝐏𝐄𝐌𝐁𝐄𝐋𝐈</button>
 </div>
 
 <!-- Tabel Pembeli Horizontal Dinamis -->
@@ -175,6 +136,8 @@
     <thead id="headerPembeli">
         <tr>
             <th>𝐍𝐚𝐦𝐚 𝐏𝐞𝐦𝐛𝐞𝐥𝐢</th>
+            <!-- Nama Barang akan ditambahkan dinamis -->
+            <th>𝐋𝐮𝐧𝐚𝐬</th>
         </tr>
     </thead>
     <tbody id="dataPembeliBody"></tbody>
@@ -240,16 +203,24 @@ let dbSnapshot;
 
 function updateTabelPembeli() {
     const header = document.getElementById("headerPembeli");
-    let ths = '<th>Nama Pembeli</th>';
+    let ths = '<th>𝐍𝐀𝐌𝐀 𝐏𝐄𝐌𝐁𝐄𝐋𝐈</th>';
     barangList.forEach(b => ths += `<th>${b.nama}</th>`);
+    ths += '<th>Lunas</th>';
     header.innerHTML = `<tr>${ths}</tr>`;
 
     const tbody = document.getElementById("dataPembeliBody");
     tbody.innerHTML = '';
-    pembeliData.forEach(p => {
-        let row = `<tr><td>${p.nama}</td>`;
-        barangList.forEach(b => { row += `<td>${p.beli[b.id] || 0}</td>`; });
-        row += '</tr>';
+    pembeliData.forEach((p, index) => {
+        let bgColor = p.lunas ? 'lightgreen' : '#ffb3b3';
+        let row = `<tr id="row-${index}" style="background:${bgColor}"><td>${p.nama}</td>`;
+        barangList.forEach(b => { 
+            row += `<td>${p.beli[b.id] || 0}</td>`; 
+        });
+        let isLunas = p.lunas || false;
+        row += `<td>
+                    <input type="checkbox" ${isLunas ? 'checked' : ''} onchange="toggleLunas(${index}, this)">
+                    <button onclick="hapusPembeli('${p.nama}')">Hapus</button>
+                </td>`;
         tbody.innerHTML += row;
     });
 }
@@ -318,12 +289,10 @@ function resetAll() {
 // ====================== LISTENER ===========================
 db.on("value", snapshot => {
     dbSnapshot = snapshot;
-
     let body = "";
     let totalPendapatan = 0;
     let labels = [];
     let jumlahJual = [];
-
     snapshot.forEach(item => {
         let d = item.val();
         labels.push(d.nama);
@@ -335,11 +304,11 @@ db.on("value", snapshot => {
             <td>${d.stokAwal}</td>
             <td class="${stokClass}">${d.stokSisa}</td>
             <td><input type="number" min="0" value="${d.terjual}" onchange="updateTerjual('${d.id}', this.value)"></td>
-            <td>Rp ${d.harga}</td>
-            <td>Rp ${d.total}</td>
+            <td> ${d.harga}</td>
+            <td> ${d.total}</td>
+            <td><button onclick="hapusBarang('${d.id}')">Hapus</button></td>
         </tr>`;
     });
-
     document.getElementById("dataBody").innerHTML = body;
     document.getElementById("totalPendapatan").innerText = totalPendapatan;
     loadGrafik(labels, jumlahJual);
@@ -356,6 +325,7 @@ pembeliRef.on("value", snapshot => {
     updateTabelPembeli();
 });
 
+// ================= MODAL SISA JUALAN ========================
 const sisaBtn = document.getElementById("sisaJualanBtn");
 const modal = document.getElementById("sisaJualanModal");
 const closeModal = modal.querySelector(".close");
@@ -377,10 +347,50 @@ sisaBtn.onclick = () => {
 
 closeModal.onclick = () => modal.style.display = "none";
 window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
+  if (event.target == modal) modal.style.display = "none";
+  if (event.target == rangkumanModal) rangkumanModal.style.display = "none";
 };
+
+// ================= MODAL RANGKUMAN ========================
+const rangkumanBtn = document.getElementById("rangkumanBtn");
+const rangkumanModal = document.getElementById("rangkumanModal");
+const closeRangkuman = rangkumanModal.querySelector(".close-rangkuman");
+const rangkumanTableBody = rangkumanModal.querySelector("tbody");
+
+rangkumanBtn.onclick = () => {
+    rangkumanModal.style.display = "block";
+    rangkumanTableBody.innerHTML = "";
+
+    db.once("value").then(snapshot => {
+        snapshot.forEach(item => {
+            let d = item.val();
+            rangkumanTableBody.innerHTML += `<tr>
+                <td>${d.nama}</td>
+                <td> ${d.harga}</td>
+            </tr>`;
+        });
+    });
+};
+
+closeRangkuman.onclick = () => rangkumanModal.style.display = "none";
+
+// ================= OTHER FUNCTIONS ========================
+function toggleLunas(index, checkbox) {
+    let pembeli = pembeliData[index];
+    let row = document.getElementById(`row-${index}`);
+    row.style.background = checkbox.checked ? 'lightgreen' : '#ffb3b3';
+    pembeli.lunas = checkbox.checked;
+}
+
+function hapusBarang(id) {
+    if (confirm("Yakin hapus barang ini?")) db.child(id).remove();
+}
+
+function hapusPembeli(nama) {
+    pembeliRef.orderByChild("nama").equalTo(nama).once("value", snapshot => {
+        snapshot.forEach(item => { item.ref.remove(); });
+    });
+}
 </script>
 
 </body>
