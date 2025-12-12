@@ -37,29 +37,21 @@
     .modal-content table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
     .modal-content th, .modal-content td { padding: 10px; border: 1px solid #400dfa; text-align: center; }
     .close { float: right; font-size: 24px; font-weight: bold; cursor: pointer; }
+
     .total-card {
-    background: #4a88ff;
-    color: white;
-    padding: 20px;
-    border-radius: 12px;
-    width: 250px;
-    text-align: center;
-    margin: 0 auto 20px auto;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: 0.3s;
-}
-.total-card:hover {
-    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-}
-.total-card h3 {
-    margin: 0 0 10px 0;
-    font-size: 18px;
-}
-.total-card p {
-    margin: 0;
-    font-size: 22px;
-    font-weight: bold;
-}
+        background: #b30df0;
+        color: rgb(33, 2, 2);
+        padding: 20px;
+        border-radius: 12px;
+        width: 250px;
+        text-align: center;
+        margin: 0 auto 20px auto;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transition: 0.3s;
+    }
+    .total-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+    .total-card h3 { margin: 0 0 10px 0; font-size: 18px; }
+    .total-card p { margin: 0; font-size: 22px; font-weight: bold; }
 </style>
 </head>
 <body>
@@ -84,16 +76,18 @@
     <input type="number" id="harga" placeholder="Harga">
     <button onclick="tambahBarang()">𝐓𝐀𝐌𝐁𝐀𝐇 𝐁𝐀𝐑𝐀𝐍𝐆</button>
 </div>
+
 <!-- Card Total Pendapatan -->
 <div class="total-card">
     <h3>Total Pendapatan</h3>
     <p>Rp <span id="totalPendapatan">0</span></p>
 </div>
-<!-- Tabel Penjualan -->
+
+<!-- TABEL PENJUALAN -->
 <table>
     <thead>
         <tr>
-            <th>𝐍𝐚𝐦𝐚 𝐁𝐚𝐫𝐚𝐧𝐠</th>
+            <th>𝐃𝐀𝐅𝐓𝐀𝐑 𝐂𝐄𝐌𝐈𝐋𝐀𝐍</th>
             <th>𝐒𝐭𝐨𝐤 𝐀𝐰𝐚𝐥</th>
             <th>𝐒𝐭𝐨𝐤 𝐒𝐢𝐬𝐚</th>
             <th>𝐓𝐞𝐫𝐣𝐮𝐚𝐥</th>
@@ -113,7 +107,7 @@
     <table id="modalTable">
       <thead>
         <tr>
-          <th>𝐍𝐚𝐦𝐚 𝐁𝐚𝐫𝐚𝐧𝐠</th>
+          <th>𝐃𝐀𝐅𝐓𝐀𝐑 𝐂𝐄𝐌𝐈𝐋𝐀𝐍</th>
           <th>𝐒𝐭𝐨𝐤 𝐀𝐰𝐚𝐥</th>
           <th>𝐒𝐭𝐨𝐤 𝐒𝐢𝐬𝐚</th>
           <th>𝐓𝐞𝐫𝐣𝐮𝐚𝐥</th>
@@ -124,7 +118,7 @@
   </div>
 </div>
 
-<!-- Modal Rangkuman Penjualan -->
+<!-- Modal Rangkuman -->
 <div id="rangkumanModal" class="modal">
   <div class="modal-content">
     <span class="close-rangkuman">&times;</span>
@@ -132,7 +126,7 @@
     <table id="rangkumanTable">
       <thead>
         <tr>
-          <th>𝐍𝐚𝐦𝐚 𝐁𝐚𝐫𝐚𝐧𝐠</th>
+          <th>𝐃𝐀𝐅𝐓𝐀𝐑 𝐂𝐄𝐌𝐈𝐋𝐀𝐍</th>
           <th>𝐇𝐚𝐫𝐠𝐚</th>
         </tr>
       </thead>
@@ -141,11 +135,7 @@
     <p style="text-align:center; font-weight:bold;">𝐘𝐀𝐍𝐆 𝐌𝐀𝐔 𝐋𝐀𝐍𝐆𝐒𝐔𝐍𝐆 𝐂𝐇𝐀𝐓 𝐘𝐀</p>
   </div>
 </div>
-
-<!-- Grafik -->
-<canvas id="grafikPenjualan"></canvas>
-
-<!-- Input Data Pembeli -->
+<!-- ========== DATA PEMBELI ========== -->
 <h3>𝐃𝐀𝐓𝐀 𝐏𝐄𝐌𝐁𝐄𝐋𝐈</h3>
 <div class="input-area">
     <input type="text" id="namaPembeli" placeholder="𝐍𝐀𝐌𝐀 𝐏𝐄𝐌𝐁𝐄𝐋𝐈">
@@ -156,24 +146,51 @@
     <button onclick="tambahPembeli()">𝐓𝐀𝐌𝐁𝐀𝐇 𝐏𝐄𝐌𝐁𝐄𝐋𝐈</button>
 </div>
 
-<!-- Tabel Pembeli Horizontal Dinamis -->
 <table>
     <thead id="headerPembeli">
         <tr>
-            <th>𝐍𝐚𝐦𝐚 𝐏𝐞𝐦𝐛𝐞𝐥𝐢</th>
-            <!-- Nama Barang akan ditambahkan dinamis -->
+            <th>𝐍𝐀𝐌𝐀 𝐏𝐄𝐌𝐁𝐄𝐋𝐈</th>
             <th>𝐋𝐮𝐧𝐚𝐬</th>
         </tr>
     </thead>
     <tbody id="dataPembeliBody"></tbody>
 </table>
 
+<!-- ========== GRAFIK PENJUALAN ========== -->
+<canvas id="grafikPenjualan"></canvas>
+
+<!-- ========== SETORAN HARIAN ========== -->
+<h3>𝐃𝐀𝐓𝐀 𝐒𝐄𝐓𝐎𝐑𝐀𝐍 𝐇𝐀𝐑𝐈𝐀𝐍</h3>
+<div class="input-area">
+    <input type="date" id="tanggalSetor">
+    <input type="number" id="jumlahSetor" placeholder="Jumlah Setor">
+    <button onclick="tambahSetoran()">𝐓𝐀𝐌𝐁𝐀𝐇 𝐒𝐄𝐓𝐎𝐑𝐀𝐍</button>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Tanggal</th>
+            <th>Jumlah Setor</th>
+            <th>Keterangan</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody id="dataSetorBody"></tbody>
+</table>
+
+<!-- Card Total Pendapatan Setoran -->
+<div class="total-card" id="totalSetorCard">
+    <h3>𝐓𝐎𝐓𝐀𝐋 𝐏𝐄𝐍𝐃𝐀𝐏𝐀𝐓𝐀𝐍 𝐏𝐄𝐍𝐉𝐔𝐀𝐋𝐀𝐍</h3>
+    <p>𝐑𝐏 <span id="totalSetoran">0</span></p>
+</div>
+
 <!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
 <script>
-// ==================== FIREBASE CONFIG ======================
+/* ==================== FIREBASE CONFIG ====================== */
 const firebaseConfig = {
   apiKey: "AIzaSyA_GuaQSaD8iqN7U27QnWYaNR3IbYWJlvo",
   authDomain: "graceresto.firebaseapp.com",
@@ -184,10 +201,129 @@ const firebaseConfig = {
   measurementId: "G-0VJ5GP9T29"
 };
 firebase.initializeApp(firebaseConfig);
+
 const db = firebase.database().ref("penjualan");
 const pembeliRef = firebase.database().ref("pembeli");
+const setoranRef = firebase.database().ref("setoran");
 
-// ==================== TAMBAH BARANG ========================
+/* ==================== DATA SETORAN HARIAN ================== */
+function tambahSetoran() {
+    const tanggal = document.getElementById("tanggalSetor").value;
+    const jumlah = parseInt(document.getElementById("jumlahSetor").value);
+    if (!tanggal || !jumlah) return alert("Isi semua data setoran!");
+
+    let id = setoranRef.push().key;
+    setoranRef.child(id).set({
+        id, tanggal, jumlah, setor: false
+    });
+
+    document.getElementById("tanggalSetor").value = "";
+    document.getElementById("jumlahSetor").value = "";
+}
+
+/* ==================== UPDATE TABEL SETORAN ================== */
+setoranRef.on("value", snapshot => {
+    const tbody = document.getElementById("dataSetorBody");
+    tbody.innerHTML = '';
+    let totalSetoran = 0;
+
+    snapshot.forEach(item => {
+        const d = item.val();
+        const cek = d.setor ? "checked" : "";
+        if (d.setor) totalSetoran += d.jumlah;
+
+        tbody.innerHTML += `<tr id="setor-${d.id}">
+            <td>${d.tanggal}</td>
+            <td>${d.jumlah}</td>
+            <td>${d.setor ? 'Sudah disetor' : 'Belum disetor'}</td>
+            <td><input type="checkbox" ${cek} onchange="toggleSetor('${d.id}', this)"></td>
+        </tr>`;
+    });
+
+    document.getElementById("totalSetoran").innerText = totalSetoran;
+});
+
+/* ==================== TOGGLE SETOR ================== */
+function toggleSetor(id, checkbox) {
+    setoranRef.child(id).update({ setor: checkbox.checked });
+}
+</script>
+<script>
+// ======= SISA PENJUALAN MODAL =======
+const sisaModal = document.getElementById("sisaJualanModal");
+const sisaBtn = document.getElementById("sisaJualanBtn");
+const closeSisa = sisaModal.querySelector(".close");
+
+sisaBtn.onclick = () => {
+    const tbody = sisaModal.querySelector("tbody");
+    tbody.innerHTML = '';
+    if (!dbSnapshot) return;
+    dbSnapshot.forEach(item => {
+        let d = item.val();
+        tbody.innerHTML += `<tr>
+            <td>${d.nama}</td>
+            <td>${d.stokAwal}</td>
+            <td>${d.stokSisa}</td>
+            <td>${d.terjual}</td>
+        </tr>`;
+    });
+    sisaModal.style.display = "block";
+};
+
+closeSisa.onclick = () => sisaModal.style.display = "none";
+window.onclick = (event) => { if (event.target == sisaModal) sisaModal.style.display = "none"; };
+
+// ======= RANGKUMAN PENJUALAN MODAL =======
+const rangkumanModal = document.getElementById("rangkumanModal");
+const rangkumanBtn = document.getElementById("rangkumanBtn");
+const closeRangkuman = rangkumanModal.querySelector(".close-rangkuman");
+
+rangkumanBtn.onclick = () => {
+    const tbody = rangkumanModal.querySelector("tbody");
+    tbody.innerHTML = '';
+    if (!dbSnapshot) return;
+    dbSnapshot.forEach(item => {
+        let d = item.val();
+        tbody.innerHTML += `<tr>
+            <td>${d.nama}</td>
+            <td>${d.harga}</td>
+        </tr>`;
+    });
+    rangkumanModal.style.display = "block";
+};
+
+closeRangkuman.onclick = () => rangkumanModal.style.display = "none";
+window.onclick = (event) => { 
+    if (event.target == rangkumanModal) rangkumanModal.style.display = "none"; 
+};
+</script>
+
+<script>
+let chart;
+let barangList = [];
+let pembeliData = [];
+let dbSnapshot;
+
+/* ==================== GRAFIK PENJUALAN ====================== */
+function loadGrafik(labels, data) {
+    if (chart) chart.destroy();
+    const ctx = document.getElementById("grafikPenjualan");
+    chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Barang Terjual",
+                data: data,
+                backgroundColor: "#4a88ff",
+                borderRadius: 10
+            }]
+        },
+        options: { responsive: true, scales: { y: { beginAtZero: true } } }
+    });
+}
+
+/* ==================== TAMBAH BARANG ====================== */
 function tambahBarang() {
     let nama = document.getElementById("namaBarang").value;
     let stok = parseInt(document.getElementById("stokAwal").value);
@@ -200,18 +336,7 @@ function tambahBarang() {
     document.getElementById("harga").value = "";
 }
 
-// ==================== LOAD TABEL & GRAFIK ==================
-let chart;
-function loadGrafik(labels, data) {
-    if (chart) chart.destroy();
-    const ctx = document.getElementById("grafikPenjualan");
-    chart = new Chart(ctx, {
-        type: "bar",
-        data: { labels: labels, datasets: [{ label: "Barang Terjual", data: data, backgroundColor: "#4a88ff", borderRadius: 10 }] },
-        options: { responsive: true, scales: { y: { beginAtZero: true } } }
-    });
-}
-
+/* ==================== UPDATE PILIHAN BARANG ================= */
 function updatePilihanBarang(snapshot) {
     const select = document.getElementById("pilihBarang");
     select.innerHTML = '<option value="">-- Pilih Barang --</option>';
@@ -221,11 +346,7 @@ function updatePilihanBarang(snapshot) {
     });
 }
 
-// =================== TABEL PEMBELI DINAMIS =================
-let barangList = [];
-let pembeliData = [];
-let dbSnapshot;
-
+/* ==================== UPDATE TABEL PEMBELI ================== */
 function updateTabelPembeli() {
     const header = document.getElementById("headerPembeli");
     let ths = '<th>𝐍𝐀𝐌𝐀 𝐏𝐄𝐌𝐁𝐄𝐋𝐈</th>';
@@ -242,16 +363,15 @@ function updateTabelPembeli() {
             row += `<td>${p.beli[b.id] || 0}</td>`; 
         });
         let isLunas = p.lunas || false;
-row += `<td>
+        row += `<td>
             <input type="checkbox" ${isLunas ? 'checked' : ''} onchange="toggleLunas(${index}, this)">
             <span id="aksi-${index}">${isLunas ? 'Lunas' : ''}</span>
         </td>`;
-
         tbody.innerHTML += row;
     });
 }
 
-// =================== UPDATE TERJUAL ========================
+/* ==================== UPDATE TERJUAL BARANG ================= */
 function updateTerjual(id, jumlah) {
     jumlah = parseInt(jumlah);
     db.child(id).once("value").then(snap => {
@@ -262,7 +382,7 @@ function updateTerjual(id, jumlah) {
     });
 }
 
-// =================== TAMBAH PEMBELI ========================
+/* ==================== TAMBAH PEMBELI ======================= */
 function tambahPembeli() {
     let namaPembeli = document.getElementById("namaPembeli").value;
     let select = document.getElementById("pilihBarang");
@@ -302,17 +422,38 @@ function tambahPembeli() {
     });
 }
 
-// ====================== RESET ===============================
+/* ==================== RESET SEMUA ======================== */
 function resetAll() {
     if (confirm("Yakin hapus semua data?")) {
         db.remove();
         pembeliRef.remove();
+        setoranRef.remove();
         pembeliData = [];
         updateTabelPembeli();
     }
 }
 
-// ====================== LISTENER ===========================
+/* ==================== TOGGLE LUNAS PEMBELI ================= */
+function toggleLunas(index, checkbox) {
+    let pembeli = pembeliData[index];
+    let row = document.getElementById(`row-${index}`);
+    let aksiCell = document.getElementById(`aksi-${index}`);
+    row.style.background = checkbox.checked ? 'lightgreen' : '#ffb3b3';
+    aksiCell.innerText = checkbox.checked ? 'Lunas' : '';
+
+    pembeliRef.orderByChild("nama").equalTo(pembeli.nama).once("value", snapshot => {
+        snapshot.forEach(item => {
+            item.ref.update({ lunas: checkbox.checked });
+        });
+    });
+}
+
+/* ==================== HAPUS BARANG ======================= */
+function hapusBarang(id) {
+    if (confirm("Yakin hapus barang ini?")) db.child(id).remove();
+}
+
+/* ==================== LISTENER FIREBASE =================== */
 db.on("value", snapshot => {
     dbSnapshot = snapshot;
     let body = "";
@@ -330,17 +471,19 @@ db.on("value", snapshot => {
             <td>${d.stokAwal}</td>
             <td class="${stokClass}">${d.stokSisa}</td>
             <td><input type="number" min="0" value="${d.terjual}" onchange="updateTerjual('${d.id}', this.value)"></td>
-            <td> ${d.harga}</td>
-            <td> ${d.total}</td>
+            <td>${d.harga}</td>
+            <td>${d.total}</td>
             <td><button onclick="hapusBarang('${d.id}')">Hapus</button></td>
         </tr>`;
     });
     document.getElementById("dataBody").innerHTML = body;
     document.getElementById("totalPendapatan").innerText = totalPendapatan;
+
     loadGrafik(labels, jumlahJual);
 
     barangList = [];
     snapshot.forEach(item => { let d = item.val(); barangList.push({ id: d.id, nama: d.nama }); });
+
     updatePilihanBarang(snapshot);
     updateTabelPembeli();
 });
@@ -348,93 +491,38 @@ db.on("value", snapshot => {
 pembeliRef.on("value", snapshot => {
     pembeliData = [];
     snapshot.forEach(item => {
-    let d = item.val();
-    d.lunas = d.lunas || false; // default false
-    pembeliData.push(d);
-});
-
+        let d = item.val();
+        d.lunas = d.lunas || false;
+        pembeliData.push(d);
+    });
     updateTabelPembeli();
 });
 
-// ================= MODAL SISA JUALAN ========================
-const sisaBtn = document.getElementById("sisaJualanBtn");
-const modal = document.getElementById("sisaJualanModal");
-const closeModal = modal.querySelector(".close");
-const modalTableBody = modal.querySelector("tbody");
+/* ==================== SETORAN HARIAN ===================== */
+setoranRef.on("value", snapshot => {
+    const tbody = document.getElementById("dataSetorBody");
+    tbody.innerHTML = '';
+    let totalSetoran = 0;
 
-sisaBtn.onclick = () => {
-  modal.style.display = "block";
-  modalTableBody.innerHTML = "";
-  dbSnapshot.forEach(item => {
-    let d = item.val();
-    modalTableBody.innerHTML += `<tr>
-      <td>${d.nama}</td>
-      <td>${d.stokAwal}</td>
-      <td>${d.stokSisa}</td>
-      <td>${d.terjual}</td>
-    </tr>`;
-  });
-};
+    snapshot.forEach(item => {
+        const d = item.val();
+        const cek = d.setor ? "checked" : "";
+        if (d.setor) totalSetoran += d.jumlah;
 
-closeModal.onclick = () => modal.style.display = "none";
-window.onclick = function(event) {
-  if (event.target == modal) modal.style.display = "none";
-  if (event.target == rangkumanModal) rangkumanModal.style.display = "none";
-};
-
-// ================= MODAL RANGKUMAN ========================
-const rangkumanBtn = document.getElementById("rangkumanBtn");
-const rangkumanModal = document.getElementById("rangkumanModal");
-const closeRangkuman = rangkumanModal.querySelector(".close-rangkuman");
-const rangkumanTableBody = rangkumanModal.querySelector("tbody");
-
-rangkumanBtn.onclick = () => {
-    rangkumanModal.style.display = "block";
-    rangkumanTableBody.innerHTML = "";
-
-    db.once("value").then(snapshot => {
-        snapshot.forEach(item => {
-            let d = item.val();
-            rangkumanTableBody.innerHTML += `<tr>
-                <td>${d.nama}</td>
-                <td> ${d.harga}</td>
-            </tr>`;
-        });
+        tbody.innerHTML += `<tr id="setor-${d.id}">
+            <td>${d.tanggal}</td>
+            <td>${d.jumlah}</td>
+            <td>${d.setor ? 'Sudah disetor' : 'Belum disetor'}</td>
+            <td><input type="checkbox" ${cek} onchange="toggleSetor('${d.id}', this)"></td>
+        </tr>`;
     });
-};
 
-closeRangkuman.onclick = () => rangkumanModal.style.display = "none";
+    document.getElementById("totalSetoran").innerText = totalSetoran;
+});
 
-// ================= OTHER FUNCTIONS ========================
-function toggleLunas(index, checkbox) {
-    let pembeli = pembeliData[index];
-    let row = document.getElementById(`row-${index}`);
-    let aksiCell = document.getElementById(`aksi-${index}`);
-
-    // Ubah warna row
-    row.style.background = checkbox.checked ? 'lightgreen' : '#ffb3b3';
-
-    // Update teks Lunas
-    aksiCell.innerText = checkbox.checked ? 'Lunas' : '';
-
-    // Update ke Firebase
-    pembeliRef.orderByChild("nama").equalTo(pembeli.nama).once("value", snapshot => {
-        snapshot.forEach(item => {
-            item.ref.update({ lunas: checkbox.checked });
-        });
-    });
-}
-
-function hapusBarang(id) {
-    if (confirm("Yakin hapus barang ini?")) db.child(id).remove();
-}
-
-function hapusPembeli(nama) {
-    pembeliRef.orderByChild("nama").equalTo(nama).once("value", snapshot => {
-        snapshot.forEach(item => { item.ref.remove(); });
-    });
+function toggleSetor(id, checkbox) {
+    setoranRef.child(id).update({ setor: checkbox.checked });
 }
 </script>
-
 </body>
 </html>
