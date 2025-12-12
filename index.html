@@ -97,9 +97,15 @@
 <!-- Card Total Pendapatan -->
 <div class="total-cards-container">
     <div class="total-card">
-        <h3>𝐓𝐎𝐓𝐀𝐋 𝐏𝐄𝐍𝐃𝐀𝐏𝐀𝐓𝐀𝐍</h3>
+        <h3>𝐓𝐎𝐓𝐀𝐋 𝐏𝐄𝐍𝐃𝐀𝐏𝐀𝐓𝐀𝐍 𝐇𝐀𝐑𝐈𝐀𝐍</h3>
         <p>𝐑𝐏 <span id="totalPendapatan">0</span></p>
     </div>
+
+<!-- Card Total Pendapatan Setoran -->
+<div class="total-card" id="totalSetorCard">
+    <h3>𝐓𝐎𝐓𝐀𝐋 𝐏𝐄𝐍𝐃𝐀𝐏𝐀𝐓𝐀𝐍 𝐏𝐄𝐍𝐉𝐔𝐀𝐋𝐀𝐍</h3>
+    <p>𝐑𝐏 <span id="totalSetoran">0</span></p>
+</div>
 
     <!-- Card baru untuk Tabel Hutang -->
     <div class="total-card hutang-card" onclick="window.open('https://heriyandi9494-cloud.github.io/tabel-hutang/', '_blank')">
@@ -181,9 +187,6 @@
     <tbody id="dataPembeliBody"></tbody>
 </table>
 
-<!-- ========== GRAFIK PENJUALAN ========== -->
-<canvas id="grafikPenjualan"></canvas>
-
 <!-- ========== SETORAN HARIAN ========== -->
 <h3>𝐃𝐀𝐓𝐀 𝐒𝐄𝐓𝐎𝐑𝐀𝐍 𝐇𝐀𝐑𝐈𝐀𝐍</h3>
 <div class="input-area">
@@ -203,13 +206,8 @@
     </thead>
     <tbody id="dataSetorBody"></tbody>
 </table>
-
-<!-- Card Total Pendapatan Setoran -->
-<div class="total-card" id="totalSetorCard">
-    <h3>𝐓𝐎𝐓𝐀𝐋 𝐏𝐄𝐍𝐃𝐀𝐏𝐀𝐓𝐀𝐍 𝐏𝐄𝐍𝐉𝐔𝐀𝐋𝐀𝐍</h3>
-    <p>𝐑𝐏 <span id="totalSetoran">0</span></p>
-</div>
-
+<!-- ========== GRAFIK PENJUALAN ========== -->
+<canvas id="grafikPenjualan"></canvas>
 <!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
