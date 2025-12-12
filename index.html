@@ -9,7 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-    body { font-family: Arial, sans-serif; background-image: url('https://i.postimg.cc/3R8W4Wb7/Screenshot-6.jpg'); padding: 20px; color: #f50606; }
+    body { font-family: Arial, sans-serif; background-image: url('https://i.postimg.cc/3R8W4Wb7/Screenshot-6.jpg'); padding: 20px; color: #0a0a0a; }
     h2, h3 { text-align: center; }
     .input-area { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
     input, button, select { padding: 10px; border-radius: 8px; border: 1px solid #01000d; transition: 0.3s; outline: none; }
@@ -81,14 +81,14 @@
 .card-container {
     display: flex;
     justify-content: center;   /* Sejajar di tengah */
-    gap: 20px;                 /* Jarak antar card */
+    gap: 10px;                 /* Jarak antar card */
     flex-wrap: wrap;           /* Bisa wrap jika layar kecil */
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .card {
-    width: 250px;             /* Lebar seragam */
-    min-height: 150px;        /* Tinggi minimal sama */
+    width: 300px;             /* Lebar seragam */
+    min-height: 10px;        /* Tinggi minimal sama */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -153,8 +153,8 @@
 
 <!-- Header -->
 <div class="header-container">
-    <img src="https://i.postimg.cc/0QKW4nSD/Screenshot-3.jpg" alt="Logo" class="logo">
-    <h2>𝐃𝐀𝐅𝐓𝐀𝐑 𝐂𝐄𝐌𝐈𝐋𝐀𝐍 𝐆𝐑𝐀𝐂𝐄 𝐑𝐄𝐒𝐓𝐎</h2>
+    <img src="https://i.postimg.cc/8CM4tXHy/Screenshot-3.jpg" alt="Logo" class="logo">
+    <h2 style="background-color: white; padding: 10px 20px; border-radius: 15px;">𝐃𝐀𝐅𝐓𝐀𝐑 𝐂𝐄𝐌𝐈𝐋𝐀𝐍 𝐆𝐑𝐀𝐂𝐄 𝐑𝐄𝐒𝐓𝐎</h2>
 </div>
 
 <!-- Input Data Barang -->
@@ -169,18 +169,18 @@
     <!-- Total Pendapatan Harian -->
     <div class="card total-harian">
         <h3>TOTAL PENDAPATAN HARIAN</h3>
-        <p>RP <span id="totalPendapatan">0</span></p>
+        <p>𝐑𝐈𝐄𝐋 <span id="totalPendapatan">0</span></p>
     </div>
 
     <!-- Total Pendapatan Penjualan -->
     <div class="card total-penjualan">
         <h3>TOTAL PENDAPATAN PENJUALAN</h3>
-        <p>RP <span id="totalSetoran">0</span></p>
+        <p>𝐑𝐈𝐄𝐋 <span id="totalSetoran">0</span></p>
     </div>
 
     <!-- Hutang Mereka -->
     <div class="card hutang-card" onclick="window.open('https://heriyandi9494-cloud.github.io/tabel-hutang/', '_blank')">
-        <img src="https://i.postimg.cc/zvxD1Ym9/jj.gif" alt="Hutang">
+        <img src="https://i.postimg.cc/3wxrZzYM/Screenshot-8-removebg-preview.png" alt="Hutang">
         <h3>HUTANG MEREKA</h3>
     </div>
 </div>
@@ -241,7 +241,7 @@
   </div>
 </div>
 <!-- ========== DATA PEMBELI ========== -->
-<h3>𝐃𝐀𝐓𝐀 𝐏𝐄𝐌𝐁𝐄𝐋𝐈</h3>
+ <h2 style="background-color: white; padding: 10px 20px; border-radius: 15px;">𝐃𝐀𝐓𝐀 𝐏𝐄𝐌𝐁𝐄𝐋𝐈</h2>
 <div class="input-area">
     <input type="text" id="namaPembeli" placeholder="𝐍𝐀𝐌𝐀 𝐏𝐄𝐌𝐁𝐄𝐋𝐈">
     <select id="pilihBarang">
@@ -266,7 +266,7 @@
 
 <!-- ========== SETORAN HARIAN ========== -->
 <div class="setoran-container">
-    <h3>𝐃𝐀𝐓𝐀 𝐒𝐄𝐓𝐎𝐑𝐀𝐍 𝐇𝐀𝐑𝐈𝐀𝐍</h3>
+   <h2 style="background-color: white; padding: 10px 20px; border-radius: 15px;">𝐃𝐀𝐓𝐀 𝐒𝐄𝐓𝐎𝐑𝐀𝐍 𝐇𝐀𝐑𝐈𝐀𝐍</h2>
 
     <div class="input-area">
         <input type="date" id="tanggalSetor">
