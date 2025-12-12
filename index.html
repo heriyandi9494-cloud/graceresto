@@ -9,7 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-    body { font-family: Arial, sans-serif; background: #f3f1f1; padding: 20px; color: #020008; }
+    body { font-family: Arial, sans-serif; background: #8ca0f3; padding: 20px; color: #020008; }
     h2, h3 { text-align: center; }
     .input-area { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
     input, button, select { padding: 10px; border-radius: 8px; border: 1px solid #01000d; transition: 0.3s; outline: none; }
@@ -44,14 +44,12 @@
     flex-wrap: wrap;
     margin-bottom: 20px;
 }
-
 .hutang-card {
     background: #ffcc00;
     cursor: pointer;
     transition: 0.3s;
     text-align: center;
 }
-
 .hutang-card:hover {
     box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
@@ -66,6 +64,79 @@
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         transition: 0.3s;
     }
+    .table-container {
+    background: white;
+    padding: 15px;
+    margin: 20px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    overflow-x: auto;  /* Supaya tabel bisa di scroll kalau layar kecil */
+    max-width: 1000px; /* Batas lebar container */
+}
+.setoran-container h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #d26900;  /* Warna heading */
+}
+.card-container {
+    display: flex;
+    justify-content: center;   /* Sejajar di tengah */
+    gap: 20px;                 /* Jarak antar card */
+    flex-wrap: wrap;           /* Bisa wrap jika layar kecil */
+    margin: 20px 0;
+}
+
+.card {
+    width: 250px;             /* Lebar seragam */
+    min-height: 150px;        /* Tinggi minimal sama */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    cursor: default;
+}
+
+.card:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* Warna khusus untuk masing-masing card */
+.total-harian { background: #b7ee05; color: #210202; }
+.total-penjualan { background: #4a88ff; color: white; }
+.hutang-card { background: #ffcc00; color: #210202; cursor: pointer; }
+
+/* Gaya teks */
+.card h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.card p {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Gambar di card hutang */
+.hutang-card img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+/* Responsif */
+@media(max-width: 800px) {
+    .card-container { gap: 15px; }
+    .card { width: 200px; min-height: 140px; }
+}
+
     .total-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
     .total-card h3 { margin: 0 0 10px 0; font-size: 18px; }
     .total-card p { margin: 0; font-size: 22px; font-weight: bold; }
@@ -94,33 +165,34 @@
     <button onclick="tambahBarang()">𝐓𝐀𝐌𝐁𝐀𝐇 𝐁𝐀𝐑𝐀𝐍𝐆</button>
 </div>
 
-<!-- Card Total Pendapatan -->
-<div class="total-cards-container">
-    <div class="total-card">
-        <h3>𝐓𝐎𝐓𝐀𝐋 𝐏𝐄𝐍𝐃𝐀𝐏𝐀𝐓𝐀𝐍 𝐇𝐀𝐑𝐈𝐀𝐍</h3>
-        <p>𝐑𝐏 <span id="totalPendapatan">0</span></p>
+<div class="card-container">
+    <!-- Total Pendapatan Harian -->
+    <div class="card total-harian">
+        <h3>TOTAL PENDAPATAN HARIAN</h3>
+        <p>RP <span id="totalPendapatan">0</span></p>
     </div>
 
-<!-- Card Total Pendapatan Setoran -->
-<div class="total-card" id="totalSetorCard">
-    <h3>𝐓𝐎𝐓𝐀𝐋 𝐏𝐄𝐍𝐃𝐀𝐏𝐀𝐓𝐀𝐍 𝐏𝐄𝐍𝐉𝐔𝐀𝐋𝐀𝐍</h3>
-    <p>𝐑𝐏 <span id="totalSetoran">0</span></p>
-</div>
+    <!-- Total Pendapatan Penjualan -->
+    <div class="card total-penjualan">
+        <h3>TOTAL PENDAPATAN PENJUALAN</h3>
+        <p>RP <span id="totalSetoran">0</span></p>
+    </div>
 
-    <!-- Card baru untuk Tabel Hutang -->
-    <div class="total-card hutang-card" onclick="window.open('https://heriyandi9494-cloud.github.io/tabel-hutang/', '_blank')">
-        <img src="https://i.postimg.cc/zvxD1Ym9/jj.gif" alt="Hutang" style="width:50px;height:50px;margin-bottom:10px;">
-        <h3>𝐇𝐔𝐓𝐀𝐍𝐆 𝐌𝐄𝐑𝐄𝐊𝐀</h3>
+    <!-- Hutang Mereka -->
+    <div class="card hutang-card" onclick="window.open('https://heriyandi9494-cloud.github.io/tabel-hutang/', '_blank')">
+        <img src="https://i.postimg.cc/zvxD1Ym9/jj.gif" alt="Hutang">
+        <h3>HUTANG MEREKA</h3>
     </div>
 </div>
 
 <!-- TABEL PENJUALAN -->
+<div class="table-container">
 <table>
     <thead>
         <tr>
             <th>𝐃𝐀𝐅𝐓𝐀𝐑 𝐂𝐄𝐌𝐈𝐋𝐀𝐍</th>
             <th>𝐒𝐭𝐨𝐤 𝐀𝐰𝐚𝐥</th>
-            <th>𝐒𝐭𝐨𝐤 𝐒𝐢𝐬𝐚</th>
+            <th>𝐒𝐭𝐨𝐤 𝐒𝐢𝐬𝐀</th>
             <th>𝐓𝐞𝐫𝐣𝐮𝐚𝐥</th>
             <th>𝐇𝐚𝐫𝐠𝐚</th>
             <th>𝐓𝐨𝐭𝐚𝐥</th>
@@ -129,6 +201,8 @@
     </thead>
     <tbody id="dataBody"></tbody>
 </table>
+</div>
+
 
 <!-- Modal Sisa Jualan -->
 <div id="sisaJualanModal" class="modal">
@@ -177,6 +251,7 @@
     <button onclick="tambahPembeli()">𝐓𝐀𝐌𝐁𝐀𝐇 𝐏𝐄𝐌𝐁𝐄𝐋𝐈</button>
 </div>
 
+<div class="table-container">
 <table>
     <thead id="headerPembeli">
         <tr>
@@ -186,15 +261,19 @@
     </thead>
     <tbody id="dataPembeliBody"></tbody>
 </table>
-
-<!-- ========== SETORAN HARIAN ========== -->
-<h3>𝐃𝐀𝐓𝐀 𝐒𝐄𝐓𝐎𝐑𝐀𝐍 𝐇𝐀𝐑𝐈𝐀𝐍</h3>
-<div class="input-area">
-    <input type="date" id="tanggalSetor">
-    <input type="number" id="jumlahSetor" placeholder="Jumlah Setor">
-    <button onclick="tambahSetoran()">𝐓𝐀𝐌𝐁𝐀𝐇 𝐒𝐄𝐓𝐎𝐑𝐀𝐍</button>
 </div>
 
+
+<!-- ========== SETORAN HARIAN ========== -->
+<div class="setoran-container">
+    <h3>𝐃𝐀𝐓𝐀 𝐒𝐄𝐓𝐎𝐑𝐀𝐍 𝐇𝐀𝐑𝐈𝐀𝐍</h3>
+
+    <div class="input-area">
+        <input type="date" id="tanggalSetor">
+        <input type="number" id="jumlahSetor" placeholder="Jumlah Setor">
+        <button onclick="tambahSetoran()">𝐓𝐀𝐌𝐁𝐀𝐇 𝐒𝐄𝐓𝐎𝐑𝐀𝐍</button>
+    </div>
+    
 <table>
     <thead>
         <tr>
@@ -206,8 +285,7 @@
     </thead>
     <tbody id="dataSetorBody"></tbody>
 </table>
-<!-- ========== GRAFIK PENJUALAN ========== -->
-<canvas id="grafikPenjualan"></canvas>
+
 <!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
@@ -387,6 +465,7 @@ function updateTabelPembeli() {
     let ths = '<th>𝐍𝐀𝐌𝐀 𝐏𝐄𝐌𝐁𝐄𝐋𝐈</th>';
     barangList.forEach(b => ths += `<th>${b.nama}</th>`);
     ths += '<th>KETERANGAN</th>';
+    ths += '<th>AKSI</th>';  // <-- Tambahkan kolom aksi
     header.innerHTML = `<tr>${ths}</tr>`;
 
     const tbody = document.getElementById("dataPembeliBody");
@@ -400,8 +479,11 @@ function updateTabelPembeli() {
         let isLunas = p.lunas || false;
         row += `<td>
             <input type="checkbox" ${isLunas ? 'checked' : ''} onchange="toggleLunas(${index}, this)">
-            <span id="aksi-${index}">${isLunas ? 'Lunas' : ''}</span>
+            <span id="aksi-${index}">${isLunas ? 'Lunas' : ''}</span>>
         </td>`;
+        // Tambahkan tombol hapus
+        row += `<td><button onclick="hapusPembeli(${index})">Hapus</button></td>`;
+
         tbody.innerHTML += row;
     });
 }
@@ -560,6 +642,17 @@ setoranRef.on("value", snapshot => {
 function toggleSetor(id, checkbox) {
     setoranRef.child(id).update({ setor: checkbox.checked });
 }
+function hapusPembeli(index) {
+    if (!confirm("Yakin ingin menghapus pembeli ini?")) return;
+
+    const pembeli = pembeliData[index];
+    pembeliRef.orderByChild("nama").equalTo(pembeli.nama).once("value", snapshot => {
+        snapshot.forEach(item => {
+            item.ref.remove();
+        });
+    });
+}
+
 </script>
 </body>
 </html>
