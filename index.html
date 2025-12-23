@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -9,7 +10,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-    body { font-family: Arial, sans-serif; background-image: url('https://i.postimg.cc/3R8W4Wb7/Screenshot-6.jpg'); padding: 20px; color: #0a0a0a; }
+    body { font-family: 'Orbitron', sans-serif; background: linear-gradient(135deg, #0f0f0f 0%, #010a1a 100%); color: #00ffcc; padding: 20px;}
     h2, h3 { text-align: center; }
     .input-area { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
     input, button, select { padding: 10px; border-radius: 8px; border: 1px solid #01000d; transition: 0.3s; outline: none; }
@@ -29,7 +30,36 @@
     .top-left-buttons { display: flex; gap: 10px; position: absolute; top: 20px; left: 20px; z-index: 1000; }
     .top-left-buttons button { padding: 10px 15px; border-radius: 8px; border: none; cursor: pointer; color: white; background: #4a88ff; transition: 0.3s; }
     .top-left-buttons button.resetBtn { background: #ff4a4a; }
-    .top-left-buttons button:hover { box-shadow: 0 0 10px #4ad9ff; }
+    .top-left-buttons button:hover { box-shadow: 0 0 10px #0c0c0c; }
+    .top-left-buttons {
+    display: flex;
+    flex-direction: column;  /* Tombol jadi vertikal */
+    gap: 10px;               /* Jarak antar tombol */
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.top-left-buttons button {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    background: #324542;
+    transition: 0.3s;
+    width: 180px;           /* Lebar seragam */
+    text-align: center;
+}
+
+.top-left-buttons button.resetBtn {
+    background: #ff4a4a;
+}
+
+.top-left-buttons button:hover {
+    box-shadow: 0 0 10px #0c0c0c;
+}
 
     /* Modal */
     .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(22, 10, 242, 0.5); }
@@ -140,7 +170,180 @@
     .total-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
     .total-card h3 { margin: 0 0 10px 0; font-size: 18px; }
     .total-card p { margin: 0; font-size: 22px; font-weight: bold; }
+/* =========================
+   AI ROBOT FUTURISTIC THEME
+   ========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap');
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle at top, #0e0e0f);
+    color: #16e603;
+}
+
+/* Header */
+.header-container h2 {
+    background: rgba(0, 0, 0, 0.7);
+    color: #00fff5;
+    text-shadow: 0 0 10px #0d0d0d, 0 0 20px #00fff5, 0 0 30px #00fff5;
+    border: 1px solid #0e0e0e;
+    border-radius: 15px;
+    padding: 15px 30px;
+    backdrop-filter: blur(10px);
+}
+
+
+/* Input & Select */
+input, select {
+    background: rgba(0, 19, 1, 0.75);
+    color: #5df10d;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+input::placeholder {
+    color: rgba(74, 217, 255, 0.6);
+}
+
+/* Button */
+button {
+    background: linear-gradient(90deg, #0a0a0a, #0046ff);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px #0d0d0d, 0 0 20px #0046ff;
+    transition: 0.3s all;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px #00f0ff, 0 0 40px #0046ff;
+}
+
+.resetBtn {
+    background: linear-gradient(90deg, #ff004c, #ff2f2f);
+    box-shadow: 0 0 10px #ff004c, 0 0 20px #ff2f2f;
+}
+
+/* Card AI */
+.card {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #161717;
+    border-left: 5px solid #00fff5;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    color: #00fff5;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 15px #111212, 0 0 25px rgba(0,255,255,0.3);
+    transition: 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 0 25px #00fff5, 0 0 50px rgba(0,255,255,0.6);
+}
+
+
+/* Card Khusus */
+.total-harian {
+    border-left: 4px solid #00ffcc;
+}
+
+.total-penjualan {
+    border-left: 4px solid #4a88ff;
+}
+
+.hutang-card {
+    border-left: 4px solid #ffcc00;
+}
+
+/* Table Container */
+.table-container {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    padding: 10px;
+    backdrop-filter: blur(12px);
+    border: 1px solid #00fff5;
+    box-shadow: 0 0 20px #00fff5;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #101010;
+}
+
+th {
+    background: rgba(0, 0, 0, 0.7);
+    color: #00fff5;
+    text-shadow: 0 0 5px #00fff5;
+}
+
+td {
+    border-bottom: 1px solid #00fff5;
+}
+tr:hover td {
+    background: rgba(0, 255, 255, 0.1);
+}
+
+
+/* Modal */
+.modal-content {
+    background: rgba(0,0,0,0.85);
+    border: 2px solid #00fff5;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 25px #00fff5;
+    color: #00fff5;
+}
+
+.close {
+    color: #ff004c;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* Stok Habis */
+.stok-habis {
+    color: #ff4c4c;
+    text-shadow: 0 0 10px red;
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+    transform: scale(1.2);
+    accent-color: rgb(2, 247, 7);
+}
+
+/* Scrollbar AI */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#00f0ff, #0046ff);
+    border-radius: 10px;
+}
+
+/* Sembunyikan form tambah barang & pembeli */
+#namaBarang,
+#stokAwal,
+#harga,
+#namaPembeli,
+#pilihBarang,
+#jumlahBeli,
+.input-area button {
+    display: none !important;
+}
+
 </style>
+
 </head>
 <body>
 
@@ -149,12 +352,38 @@
     <button class="resetBtn" onclick="resetAll()">𝐑𝐄𝐒𝐄𝐓 𝐒𝐄𝐌𝐔𝐀</button>
     <button id="sisaJualanBtn">𝐒𝐈𝐒𝐀 𝐉𝐔𝐀𝐋𝐀𝐍</button>
     <button id="rangkumanBtn">𝐑𝐀𝐍𝐆𝐊𝐔𝐌𝐀𝐍 𝐏𝐄𝐍𝐉𝐔𝐀𝐋𝐀𝐍</button>
+    <button id="tambahBarangBtn">𝐓𝐀𝐌𝐁𝐀𝐇 𝐁𝐀𝐑𝐀𝐍𝐆</button>
+    <button id="tambahPembeliBtn">𝐓𝐀𝐌𝐁𝐀𝐇 𝐏𝐄𝐌𝐁𝐄𝐋𝐈</button>
+</div>
+<!-- Modal Tambah Barang -->
+<div id="modalTambahBarang" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modalTambahBarang')">&times;</span>
+    <h3>Tambah Barang</h3>
+    <input type="text" id="modalNamaBarang" placeholder="Nama Barang">
+    <input type="number" id="modalStokAwal" placeholder="Stok Awal">
+    <input type="number" id="modalHarga" placeholder="Harga">
+    <button onclick="submitTambahBarang()">𝐓𝐀𝐌𝐁𝐀𝐇</button>
+  </div>
 </div>
 
+<!-- Modal Tambah Pembeli -->
+<div id="modalTambahPembeli" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modalTambahPembeli')">&times;</span>
+    <h3>Tambah Pembeli</h3>
+    <input type="text" id="modalNamaPembeli" placeholder="Nama Pembeli">
+    <select id="modalPilihBarang">
+        <option value="">-- Pilih Barang --</option>
+    </select>
+    <input type="number" id="modalJumlahBeli" placeholder="Jumlah Beli">
+    <button onclick="submitTambahPembeli()">𝐓𝐀𝐌𝐁𝐀𝐇</button>
+  </div>
+</div>
 <!-- Header -->
 <div class="header-container">
     <img src="https://i.postimg.cc/8CM4tXHy/Screenshot-3.jpg" alt="Logo" class="logo">
-    <h2 style="background-color: white; padding: 10px 20px; border-radius: 15px;">𝐃𝐀𝐅𝐓𝐀𝐑 𝐂𝐄𝐌𝐈𝐋𝐀𝐍 𝐆𝐑𝐀𝐂𝐄 𝐑𝐄𝐒𝐓𝐎</h2>
+    <h2 style="background-color: #120101; padding: 10px 20px; border-radius: 15px;">𝐃𝐀𝐅𝐓𝐀𝐑 𝐂𝐄𝐌𝐈𝐋𝐀𝐍 𝐆𝐑𝐀𝐂𝐄 𝐑𝐄𝐒𝐓𝐎</h2>
 </div>
 
 <!-- Input Data Barang -->
@@ -266,7 +495,7 @@
 
 <!-- ========== SETORAN HARIAN ========== -->
 <div class="setoran-container">
-<h2 style="background-color: white; padding: 10px 20px; border-radius: 15px; text-align: center; max-width: 980px;margin: 0 auto 15px auto; font-weight: bold;">𝐃𝐀𝐓𝐀 𝐒𝐄𝐓𝐎𝐑𝐀𝐍 𝐇𝐀𝐑𝐈𝐀𝐍</h2>
+<h2 style="background-color: rgb(245, 6, 6); padding: 10px 20px; border-radius: 15px; text-align: center; max-width: 980px;margin: 0 auto 15px auto; font-weight: bold;">𝐃𝐀𝐓𝐀 𝐒𝐄𝐓𝐎𝐑𝐀𝐍 𝐇𝐀𝐑𝐈𝐀𝐍</h2>
     <div class="input-area">
         <input type="date" id="tanggalSetor">
         <input type="number" id="jumlahSetor" placeholder="Jumlah Setor">
@@ -651,7 +880,85 @@ function hapusPembeli(index) {
         });
     });
 }
+// ======= Buka Modal =======
+document.getElementById("tambahBarangBtn").onclick = () => {
+    document.getElementById("modalTambahBarang").style.display = "block";
+};
+document.getElementById("tambahPembeliBtn").onclick = () => {
+    updateModalBarangList();
+    document.getElementById("modalTambahPembeli").style.display = "block";
+};
 
+function closeModal(id) {
+    document.getElementById(id).style.display = "none";
+}
+
+// ======= Submit Tambah Barang =======
+function submitTambahBarang() {
+    let nama = document.getElementById("modalNamaBarang").value;
+    let stok = parseInt(document.getElementById("modalStokAwal").value);
+    let harga = parseInt(document.getElementById("modalHarga").value);
+    if (!nama || !stok || !harga) return alert("Isi semua data!");
+
+    let id = db.push().key;
+    db.child(id).set({ id, nama, stokAwal: stok, stokSisa: stok, terjual: 0, harga, total: 0 });
+
+    document.getElementById("modalNamaBarang").value = "";
+    document.getElementById("modalStokAwal").value = "";
+    document.getElementById("modalHarga").value = "";
+
+    closeModal("modalTambahBarang");
+}
+
+// ======= Update Select Barang di Modal Pembeli =======
+function updateModalBarangList() {
+    const select = document.getElementById("modalPilihBarang");
+    select.innerHTML = '<option value="">-- Pilih Barang --</option>';
+    barangList.forEach(b => {
+        select.innerHTML += `<option value="${b.id}">${b.nama}</option>`;
+    });
+}
+
+// ======= Submit Tambah Pembeli =======
+function submitTambahPembeli() {
+    let namaPembeli = document.getElementById("modalNamaPembeli").value;
+    let barangId = document.getElementById("modalPilihBarang").value;
+    let jumlahBeli = parseInt(document.getElementById("modalJumlahBeli").value);
+    if (!namaPembeli || !barangId || !jumlahBeli) return alert("Isi semua data pembeli!");
+
+    db.child(barangId).once("value").then(snap => {
+        let d = snap.val();
+        if (d.stokSisa < jumlahBeli) return alert("Stok tidak cukup!");
+
+        db.child(barangId).update({
+            terjual: d.terjual + jumlahBeli,
+            stokSisa: d.stokSisa - jumlahBeli,
+            total: (d.terjual + jumlahBeli) * d.harga
+        });
+
+        // Tambah ke Firebase pembeli
+        pembeliRef.orderByChild("nama").equalTo(namaPembeli).once("value", snapshot => {
+            if (snapshot.exists()) {
+                snapshot.forEach(childSnap => {
+                    let beliData = childSnap.val().beli || {};
+                    beliData[barangId] = (beliData[barangId] || 0) + jumlahBeli;
+                    childSnap.ref.update({ beli: beliData });
+                });
+            } else {
+                let idPembeli = pembeliRef.push().key;
+                let beliData = {};
+                beliData[barangId] = jumlahBeli;
+                pembeliRef.child(idPembeli).set({ nama: namaPembeli, beli: beliData });
+            }
+        });
+
+        document.getElementById("modalNamaPembeli").value = "";
+        document.getElementById("modalJumlahBeli").value = "";
+        document.getElementById("modalPilihBarang").value = "";
+
+        closeModal("modalTambahPembeli");
+    });
+}
 </script>
 </body>
 </html>
