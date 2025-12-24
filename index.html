@@ -341,7 +341,51 @@ input[type="checkbox"] {
 .input-area button {
     display: none !important;
 }
+.top-left-buttons button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform .25s ease, box-shadow .25s ease;
+}
 
+/* Neon glow layer */
+.top-left-buttons button::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+
+}
+
+@keyframes neonFlow {
+    from { background-position: 0% }
+    to   { background-position: 300% }
+}
+
+/* Hover */
+.top-left-buttons button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 25px rgba(0,229,255,.8),
+                0 0 45px rgba(255,0,255,.6);
+}
+
+/* Klik pulse */
+.top-left-buttons button:active {
+    transform: scale(.95);
+}
+.top-left-buttons {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    gap: 8px;
+}
 </style>
 
 </head>
@@ -349,11 +393,12 @@ input[type="checkbox"] {
 
 <!-- Tombol kiri atas -->
 <div class="top-left-buttons">
-    <button class="resetBtn" onclick="resetAll()">𝐑𝐄𝐒𝐄𝐓 𝐒𝐄𝐌𝐔𝐀</button>
+    <button onclick="resetAll()">𝐑𝐄𝐒𝐄𝐓 𝐒𝐄𝐌𝐔𝐀</button>
     <button id="sisaJualanBtn">𝐒𝐈𝐒𝐀 𝐉𝐔𝐀𝐋𝐀𝐍</button>
     <button id="rangkumanBtn">𝐑𝐀𝐍𝐆𝐊𝐔𝐌𝐀𝐍 𝐏𝐄𝐍𝐉𝐔𝐀𝐋𝐀𝐍</button>
     <button id="tambahBarangBtn">𝐓𝐀𝐌𝐁𝐀𝐇 𝐁𝐀𝐑𝐀𝐍𝐆</button>
     <button id="tambahPembeliBtn">𝐓𝐀𝐌𝐁𝐀𝐇 𝐏𝐄𝐌𝐁𝐄𝐋𝐈</button>
+    <button onclick="tambahSetoran()">𝐓𝐀𝐌𝐁𝐀𝐇 𝐒𝐄𝐓𝐎𝐑𝐀𝐍</button>
 </div>
 <!-- Modal Tambah Barang -->
 <div id="modalTambahBarang" class="modal">
@@ -416,6 +461,9 @@ input[type="checkbox"] {
 
 <!-- TABEL PENJUALAN -->
 <div class="table-container">
+<div class="table-box">
+  <div class="table-header">
+  </div>
 <table>
     <thead>
         <tr>
@@ -431,7 +479,6 @@ input[type="checkbox"] {
     <tbody id="dataBody"></tbody>
 </table>
 </div>
-
 
 <!-- Modal Sisa Jualan -->
 <div id="sisaJualanModal" class="modal">
@@ -499,7 +546,6 @@ input[type="checkbox"] {
     <div class="input-area">
         <input type="date" id="tanggalSetor">
         <input type="number" id="jumlahSetor" placeholder="Jumlah Setor">
-        <button onclick="tambahSetoran()">𝐓𝐀𝐌𝐁𝐀𝐇 𝐒𝐄𝐓𝐎𝐑𝐀𝐍</button>
     </div>
     
 <table>
@@ -959,6 +1005,23 @@ function submitTambahPembeli() {
         closeModal("modalTambahPembeli");
     });
 }
+</script>
+<script>
+function neonAI() {
+    document.querySelectorAll(".top-left-buttons button").forEach(btn => {
+        const hue = Math.floor(Math.random() * 360);
+        btn.style.setProperty("--neon1", `hsl(${hue},100%,60%)`);
+        btn.style.setProperty("--neon2", `hsl(${hue+40},100%,50%)`);
+
+        btn.style.boxShadow = `
+          0 0 15px var(--neon1),
+          0 0 35px var(--neon2)
+        `;
+    });
+}
+
+// Aktifkan otomatis
+window.addEventListener("load", neonAI);
 </script>
 </body>
 </html>
