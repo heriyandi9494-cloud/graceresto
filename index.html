@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="id">
-<head>
+<head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>𝐃𝐀𝐅𝐓𝐀𝐑 𝐂𝐄𝐌𝐈𝐋𝐀𝐍 𝐆𝐑𝐀𝐂𝐄 𝐑𝐄𝐒𝐓𝐎</title>
@@ -386,20 +386,73 @@ input[type="checkbox"] {
     display: flex;
     gap: 8px;
 }
-</style>
+.top-left-buttons button i {
+    margin-right: 8px; /* jarak ikon ke teks */
+}
+.top-left-buttons button {
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    background: #111;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
+/* Layer neon glow */
+.top-left-buttons button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        rgba(0,255,255,0.5),
+        rgba(255,0,255,0.5),
+        rgba(0,255,0,0.5),
+        rgba(0,255,255,0.5)
+    );
+    transform: skewX(-20deg);
+    transition: 0.3s;
+}
+
+/* Animasi lampu berjalan */
+.top-left-buttons button:hover::before {
+    animation: shine 2s linear infinite;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
+}
+
+/* Biar teks tetap di atas */
+.top-left-buttons button i,
+.top-left-buttons button span {
+    position: relative;
+    z-index: 2;
+}
+
+</style>
 </head>
 <body>
 
 <!-- Tombol kiri atas -->
 <div class="top-left-buttons">
-    <button onclick="resetAll()">𝐑𝐄𝐒𝐄𝐓 𝐒𝐄𝐌𝐔𝐀</button>
-    <button id="sisaJualanBtn">𝐒𝐈𝐒𝐀 𝐉𝐔𝐀𝐋𝐀𝐍</button>
-    <button id="rangkumanBtn">𝐑𝐀𝐍𝐆𝐊𝐔𝐌𝐀𝐍 𝐏𝐄𝐍𝐉𝐔𝐀𝐋𝐀𝐍</button>
-    <button id="tambahBarangBtn">𝐓𝐀𝐌𝐁𝐀𝐇 𝐁𝐀𝐑𝐀𝐍𝐆</button>
-    <button id="tambahPembeliBtn">𝐓𝐀𝐌𝐁𝐀𝐇 𝐏𝐄𝐌𝐁𝐄𝐋𝐈</button>
-    <button onclick="tambahSetoran()">𝐓𝐀𝐌𝐁𝐀𝐇 𝐒𝐄𝐓𝐎𝐑𝐀𝐍</button>
+    <button onclick="resetAll()"><i class="fas fa-trash-alt"></i> 𝐑𝐄𝐒𝐄𝐓 𝐒𝐄𝐌𝐔𝐀</button>
+    <button id="sisaJualanBtn"><i class="fas fa-box"></i> 𝐒𝐈𝐒𝐀 𝐉𝐔𝐀𝐋𝐀𝐍</button>
+    <button id="rangkumanBtn"><i class="fas fa-chart-line"></i> 𝐑𝐀𝐍𝐆𝐊𝐔𝐌𝐀𝐍 𝐏𝐄𝐍𝐉𝐔𝐀𝐋𝐀𝐍</button>
+    <button id="tambahBarangBtn"><i class="fas fa-plus"></i> 𝐓𝐀𝐌𝐁𝐀𝐇 𝐁𝐀𝐑𝐀𝐍𝐆</button>
+    <button id="tambahPembeliBtn"><i class="fas fa-user-plus"></i> 𝐓𝐀𝐌𝐁𝐀𝐇 𝐏𝐄𝐌𝐁𝐄𝐋𝐈</button>
+    <button onclick="tambahSetoran()"><i class="fas fa-money-bill-wave"></i> 𝐓𝐀𝐌𝐁𝐀𝐇 𝐒𝐄𝐓𝐎𝐑𝐀𝐍</button>
 </div>
+
 <!-- Modal Tambah Barang -->
 <div id="modalTambahBarang" class="modal">
   <div class="modal-content">
