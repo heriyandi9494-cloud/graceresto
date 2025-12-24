@@ -1075,6 +1075,54 @@ function neonAI() {
 
 // Aktifkan otomatis
 window.addEventListener("load", neonAI);
+
+// Kunci admin rahasia
+const ADMIN_KEY = "GRACERESTO2025"; // ganti sesuai keinginan
+function resetAll() {
+    const key = prompt("𝐌𝐚𝐬𝐮𝐤𝐤𝐚𝐧 𝐤𝐨𝐝𝐞 𝐮𝐧𝐭𝐮𝐤 𝐑𝐞𝐬𝐞𝐭 𝐒𝐞𝐦𝐮𝐚:");
+    if (key !== ADMIN_KEY) {
+        alert("𝐌𝐚𝐚𝐟 𝐚𝐧𝐝𝐚 𝐭𝐢𝐝𝐚𝐤 𝐩𝐮𝐧𝐲𝐚 𝐡𝐚𝐤 𝐮𝐧𝐭𝐮𝐤 𝐦𝐞𝐧𝐠𝐡𝐚𝐩𝐮𝐬 𝐬𝐞𝐦𝐮𝐚 𝐝𝐚𝐭𝐚 𝐢𝐧𝐢!");
+        return; // batal eksekusi
+    }
+
+    if (confirm("Yakin hapus semua data?")) {
+        db.remove();
+        pembeliRef.remove();
+        setoranRef.remove();
+        pembeliData = [];
+        updateTabelPembeli();
+        alert("Semua data berhasil dihapus oleh Admin!");
+    }
+}
+function hapusBarang(id) {
+    const key = prompt("𝐌𝐚𝐬𝐮𝐤𝐤𝐚𝐧 𝐤𝐨𝐝𝐞 𝐮𝐧𝐭𝐮𝐤 𝐦𝐞𝐧𝐠𝐡𝐚𝐩𝐮𝐬 𝐛𝐚𝐫𝐚𝐧𝐠::");
+    if (key !== ADMIN_KEY) {
+        alert("𝐌𝐚𝐇𝐚𝐧𝐲𝐚 𝐇𝐞𝐫𝐢 𝐋𝐚𝐨𝐬 𝐲𝐚𝐧𝐠 𝐛𝐢𝐬𝐚 𝐦𝐞𝐧𝐠𝐡𝐚𝐩𝐮𝐬 𝐝𝐚𝐭𝐚 𝐢𝐧𝐢!");
+        return;
+    }
+
+    if (confirm("Yakin hapus barang ini?")) {
+        db.child(id).remove();
+        alert("Barang berhasil dihapus oleh Admin!");
+    }
+}
+function hapusPembeli(index) {
+    const key = prompt("𝐌𝐚𝐬𝐮𝐤𝐤𝐚𝐧 𝐤𝐨𝐝𝐞 𝐮𝐧𝐭𝐮𝐤 𝐦𝐞𝐧𝐠𝐡𝐚𝐩𝐮𝐬 𝐝𝐚𝐭𝐚 𝐩𝐞𝐦𝐛𝐞𝐥𝐢:");
+    if (key !== ADMIN_KEY) {
+        alert("𝐇𝐚𝐧𝐲𝐚 𝐇𝐞𝐫𝐢 𝐋𝐚𝐨𝐬 𝐲𝐚𝐧𝐠 𝐛𝐢𝐬𝐚 𝐦𝐞𝐧𝐠𝐡𝐚𝐩𝐮𝐬 𝐝𝐚𝐭𝐚 𝐩𝐞𝐦𝐛𝐞𝐥𝐢!");
+        return;
+    }
+
+    if (!confirm("Yakin ingin menghapus pembeli ini?")) return;
+
+    const pembeli = pembeliData[index];
+    pembeliRef.orderByChild("nama").equalTo(pembeli.nama).once("value", snapshot => {
+        snapshot.forEach(item => item.ref.remove());
+    });
+
+    alert("Pembeli berhasil dihapus oleh Admin!");
+}
+
 </script>
 </body>
 </html>
