@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="id">
 <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -438,19 +439,71 @@ input[type="checkbox"] {
     position: relative;
     z-index: 2;
 }
+/* ===== DROPDOWN MENU MOBILE FIX ===== */
+.menu-container {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 9999;
+}
 
+.menu-toggle {
+    background: linear-gradient(90deg, #000, #0046ff);
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px #00f0ff;
+}
+
+.menu-dropdown {
+    display: none;
+    flex-direction: column;
+    margin-top: 10px;
+    background: rgba(0,0,0,0.95);
+    border-radius: 12px;
+    padding: 10px;
+    width: 220px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px #00fff5;
+}
+
+/* tombol dalam menu */
+.menu-dropdown button {
+    background: transparent;
+    color: #00fff5;
+    border: none;
+    padding: 10px;
+    text-align: left;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.menu-dropdown button:hover {
+    background: rgba(0,255,255,0.2);
+    transform: translateX(5px);
+}
 </style>
 </head>
 <body>
 
-<!-- Tombol kiri atas -->
-<div class="top-left-buttons">
-    <button onclick="resetAll()"><i class="fas fa-trash-alt"></i> 𝐑𝐄𝐒𝐄𝐓 𝐒𝐄𝐌𝐔𝐀</button>
-    <button id="sisaJualanBtn"><i class="fas fa-box"></i> 𝐒𝐈𝐒𝐀 𝐉𝐔𝐀𝐋𝐀𝐍</button>
-    <button id="rangkumanBtn"><i class="fas fa-chart-line"></i> 𝐑𝐀𝐍𝐆𝐊𝐔𝐌𝐀𝐍 𝐏𝐄𝐍𝐉𝐔𝐀𝐋𝐀𝐍</button>
-    <button id="tambahBarangBtn"><i class="fas fa-plus"></i> 𝐓𝐀𝐌𝐁𝐀𝐇 𝐁𝐀𝐑𝐀𝐍𝐆</button>
-    <button id="tambahPembeliBtn"><i class="fas fa-user-plus"></i> 𝐓𝐀𝐌𝐁𝐀𝐇 𝐏𝐄𝐌𝐁𝐄𝐋𝐈</button>
-    <button onclick="tambahSetoran()"><i class="fas fa-money-bill-wave"></i> 𝐓𝐀𝐌𝐁𝐀𝐇 𝐒𝐄𝐓𝐎𝐑𝐀𝐍</button>
+<!-- MENU DROPDOWN MOBILE -->
+<div class="menu-container">
+    <button class="menu-toggle">
+        <i class="fas fa-bars"></i> MENU
+    </button>
+
+    <div class="menu-dropdown">
+        <button onclick="resetAll()"><i class="fas fa-trash-alt"></i> RESET SEMUA</button>
+        <button id="sisaJualanBtn"><i class="fas fa-box"></i> SISA JUALAN</button>
+        <button id="rangkumanBtn"><i class="fas fa-chart-line"></i> RANGKUMAN</button>
+        <button id="tambahBarangBtn"><i class="fas fa-plus"></i> TAMBAH BARANG</button>
+        <button id="tambahPembeliBtn"><i class="fas fa-user-plus"></i> TAMBAH PEMBELI</button>
+        <button onclick="tambahSetoran()"><i class="fas fa-money-bill-wave"></i> TAMBAH SETORAN</button>
+    </div>
 </div>
 
 <!-- Modal Tambah Barang -->
@@ -1123,6 +1176,22 @@ function hapusPembeli(index) {
     alert("Pembeli berhasil dihapus oleh Admin!");
 }
 
+</script>
+<script>
+const menuToggle = document.querySelector(".menu-toggle");
+const menuDropdown = document.querySelector(".menu-dropdown");
+
+menuToggle.onclick = () => {
+    menuDropdown.style.display =
+        menuDropdown.style.display === "flex" ? "none" : "flex";
+};
+
+// klik luar = tutup menu
+window.addEventListener("click", function(e) {
+    if (!e.target.closest(".menu-container")) {
+        menuDropdown.style.display = "none";
+    }
+});
 </script>
 </body>
 </html>
